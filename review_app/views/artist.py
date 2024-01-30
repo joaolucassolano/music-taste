@@ -1,12 +1,13 @@
-from django.http import HttpRequest, Http404
+from django.http import Http404
 
-from .models import Artist, Music, Review
-from rest_framework import views, status
+from ..models import Artist
+from rest_framework import status
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
-from .serializers import ArtistSerializer, MusicSerializer
+from ..serializers import ArtistSerializer
 
-class ArtistList(views.APIView):
+class ArtistList(APIView):
     """
     List all artists or create a new artist.
     """
@@ -22,7 +23,7 @@ class ArtistList(views.APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-class ArtistDetail(views.APIView):
+class ArtistDetail(APIView):
     """
     Retrieve, update or delete a artist instance.
     """
