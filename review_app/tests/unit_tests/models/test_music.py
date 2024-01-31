@@ -42,8 +42,8 @@ class MusicModelTest(TestCase):
         artist_name = 'The Beatles'
         artist = create_artist(artist_name)
         music = create_music(music_name, [artist])
-        excepted_music_to_string = artist_name + ' - ' + music_name
-        self.assertEqual(str(music), excepted_music_to_string)
+        expected_music_to_string = artist_name + ' - ' + music_name
+        self.assertEqual(str(music), expected_music_to_string)
 
     def test_music_to_string_with_more_than_one_artits(self):
         music_name = 'Get Lucky'
@@ -53,5 +53,5 @@ class MusicModelTest(TestCase):
         artist2 = create_artist(artist2_name)
         artists = [artist1, artist2]
         music = create_music(music_name, artists)
-        excepted_music_to_string = ', '.join(str(artist) for artist in artists) + ' - ' + music_name
-        self.assertEqual(str(music), excepted_music_to_string)
+        expected_music_to_string = ', '.join(str(artist) for artist in artists) + ' - ' + music_name
+        self.assertEqual(str(music), expected_music_to_string)
