@@ -5,3 +5,6 @@ class Artist(models.Model):
 
     def __str__(self):
         return self.name;
+
+    def get_musics(self):
+        return self.music_set.all()
