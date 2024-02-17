@@ -1,4 +1,5 @@
 from django.test import TestCase
+from django.core.exceptions import ValidationError
 
 from ....models import Music, Artist, Review
 
@@ -36,3 +37,23 @@ class ReviewModelTest(TestCase):
         review = create_review(rate, None, music)
         expected = str(music) + ': ' + str(rate)
         self.assertEqual(str(review), expected)
+
+    def test_review_is_greater_than_or_equal_to_1(self):
+        rate = 0
+        music = create_music('Something', create_artist('The Beatles'))
+        review = create_review(rate, None, music)
+        with self.assertRaisesMessage(
+            ValidationError,
+            'Ensure this value is greater than or equal to 1.'
+        ):
+            review.full_clean()
+
+    def test_review_is_less_than_or_equal_to_5(self):
+        rate = 6
+        music = create_music('Something', create_artist('The Beatles'))
+        review = create_review(rate, None, music)
+        with self.assertRaisesMessage(
+            ValidationError,
+            'Ensure this value is less than or equal to 5.'
+        ):
+            review.full_clean()
