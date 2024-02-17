@@ -7,6 +7,8 @@ urlpatterns = [
     path('artists/<int:pk>', views.ArtistDetail.as_view()),
     path('musics', views.MusicList.as_view()),
     path('musics/<int:pk>', views.MusicDetail.as_view()),
+    path('reviews', views.ReviewList.as_view()),
+    path('reviews/<int:pk>', views.ReviewDetail.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
