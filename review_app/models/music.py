@@ -7,3 +7,6 @@ class Music(models.Model):
 
     def __str__(self):
         return str(self.artist) + " - " + self.name
+    
+    def get_reviews(self):
+        return self.review_set.all()
